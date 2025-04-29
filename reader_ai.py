@@ -2,21 +2,16 @@ import streamlit as st
 from google.cloud import texttospeech
 from google.oauth2 import service_account
 import tempfile
-from google.oauth2 import service_account
 from pptx import Presentation
-import io
-from google.cloud import texttospeech
 
-# 인증 파일 경로를 사용하여 클라이언트 초기화
-credentials = service_account.Credentials.from_service_account_file('/mnt/data/service_account.json')
-client = texttospeech.TextToSpeechClient(credentials=credentials)
+# 파일 업로드 - 인증 파일
+uploaded_service_account_file = st.file_uploader("Google Cloud 인증 JSON 파일을 업로드하세요", type=["json"])
 
-uploaded_file = st.file_uploader("C:/Users/mikiw/Downloads/universal-trail-457914-d8-5ca4e58bb984.json", type=["json"])
-
-if uploaded_file is not None:
-    # 업로드된 파일을 /mnt/data/ 경로에 저장
+# 인증 파일 업로드 시
+if uploaded_service_account_file is not None:
+    # 업로드된 인증 파일을 /mnt/data/ 경로에 저장
     with open("/mnt/data/service_account.json", "wb") as f:
-        f.write(uploaded_file.getbuffer())
+        f.write(uploaded_service_account_file.getbuffer())
 
     # 인증 파일로 Google Cloud API 인증
     credentials = service_account.Credentials.from_service_account_file('/mnt/data/service_account.json')
@@ -38,9 +33,9 @@ voice = texttospeech.VoiceSelectionParams(
 # PPT 파일 업로드
 st.title('PPT 대본 수정 및 음성 변환 웹앱')
 
-uploaded_file = st.file_uploader("PPT 파일 업로드", type="pptx")
-if uploaded_file is not None:
-    presentation = Presentation(uploaded_file)
+uploaded_ppt_file = st.file_uploader("PPT 파일 업로드", type="pptx")
+if uploaded_ppt_file is not None:
+    presentation = Presentation(uploaded_ppt_file)
 
     # 각 슬라이드의 텍스트 추출 및 수정
     slide_scripts = {}
