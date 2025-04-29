@@ -5,7 +5,7 @@ import tempfile
 
 # Google Cloud TTS 클라이언트 초기화
 credentials = service_account.Credentials.from_service_account_file(
-    'C:\Users\mikiw\Downloads\universal-trail-457914-d8-5ca4e58bb984.json'  # 서비스 계정 JSON 파일 경로
+    'C:／Users／mikiw／Downloads／universal-trail-457914-d8-5ca4e58bb984.json'  # 서비스 계정 JSON 파일 경로
 )
 client = texttospeech.TextToSpeechClient(credentials=credentials)
 
