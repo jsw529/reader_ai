@@ -4,11 +4,20 @@ from google.oauth2 import service_account
 import tempfile
 from google.oauth2 import service_account
 
-# Google Cloud TTS 클라이언트 초기화
-credentials = service_account.Credentials.from_service_account_file(
-    '/mnt/data/universal-trail-457914-d8-5ca4e58bb984.json'  # 서비스 계정 JSON 파일 경로
-)
-client = texttospeech.TextToSpeechClient(credentials=credentials)
+uploaded_file = st.file_uploader("C:/Users/mikiw/Downloads/universal-trail-457914-d8-5ca4e58bb984.json", type=["json"])
+
+if uploaded_file is not None:
+    # 업로드된 파일을 /mnt/data/ 경로에 저장
+    with open("/mnt/data/service_account.json", "wb") as f:
+        f.write(uploaded_file.getbuffer())
+
+    # 인증 파일로 Google Cloud API 인증
+    credentials = service_account.Credentials.from_service_account_file('/mnt/data/service_account.json')
+
+    # Google Cloud API 클라이언트 생성
+    client = texttospeech.TextToSpeechClient(credentials=credentials)
+
+    st.success("Google Cloud 인증 파일이 성공적으로 업로드되었습니다!")
 
 # 음성 성별 선택 (남성, 여성)
 voice_choice = st.radio("음성 성별 선택", ("남성", "여성"))
