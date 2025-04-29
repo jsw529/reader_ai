@@ -7,6 +7,7 @@ from pptx import Presentation
 # 인증 파일 업로드
 uploaded_service_account_file = st.file_uploader("Google Cloud 인증 JSON 파일을 업로드하세요", type=["json"])
 
+# 인증 파일 업로드 시
 if uploaded_service_account_file is not None:
     # 업로드된 인증 파일을 /mnt/data/ 경로에 저장
     with open("/mnt/data/service_account.json", "wb") as f:
