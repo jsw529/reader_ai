@@ -4,14 +4,9 @@ from google.oauth2 import service_account
 import tempfile
 from google.oauth2 import service_account
 
-# 서비스 계정 JSON 파일 경로 수정
-credentials = service_account.Credentials.from_service_account_file(
-     "C:／Users／mikiw／Downloads／universal-trail-457914-d8-5ca4e58bb984.json"  # Streamlit Cloud 경로
-)
-
 # Google Cloud TTS 클라이언트 초기화
 credentials = service_account.Credentials.from_service_account_file(
-    "C:／Users／mikiw／Downloads／universal-trail-457914-d8-5ca4e58bb984.json"  # 서비스 계정 JSON 파일 경로
+    '/mnt/data/universal-trail-457914-d8-5ca4e58bb984.json'  # 서비스 계정 JSON 파일 경로
 )
 client = texttospeech.TextToSpeechClient(credentials=credentials)
 
