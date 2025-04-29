@@ -1,0 +1,9 @@
+# 환경 변수 파일
+.env
+
+# Python 가상환경 파일
+venv/
+__pycache__/
+
+# 서비스 계정 파일 (API 키 포함)
+"C:\Users\mikiw\Downloads\universal-trail-457914-d8-5ca4e58bb984.json"
