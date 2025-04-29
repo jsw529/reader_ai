@@ -3,6 +3,8 @@ from google.cloud import texttospeech
 from google.oauth2 import service_account
 import tempfile
 from google.oauth2 import service_account
+from pptx import Presentation
+import io
 
 uploaded_file = st.file_uploader("C:/Users/mikiw/Downloads/universal-trail-457914-d8-5ca4e58bb984.json", type=["json"])
 
